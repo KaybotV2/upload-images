@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Display images 
 router.get('/', async (req, res) => {
+  const success = req.query.success === 'true';
   try {
     const imagesDir = path.join(__dirname, '..', 'public', 'images');
     const files = await fs.readdir(imagesDir); // Get list of files in the directory
@@ -35,7 +36,7 @@ router.get('/', async (req, res) => {
     }
 
     // Render a template to display the images data
-    res.render("images", { pageTitle: "Image List", imagesData });
+    res.render("images", { pageTitle: "Image List", imagesData, success });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ error: "Failed to retrieve images." });

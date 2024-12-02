@@ -1,16 +1,17 @@
 const express = require('express');
+
 const router = express.Router();
 const fs = require('fs/promises');
 const path = require('path');
-
 const ExifParser = require('exif-parser');
+
+
 const { getLatLng } = require('../utils/geocode');
 const { addGPSDataToImage } = require('../utils/exif');
 
 // Render upload page
 router.get('/', (req, res) => {
-  const success = req.query.success === 'true';
-  res.render("upload", { pageTitle: "Upload Images", success });
+  res.render("upload", { pageTitle: "Upload Images" });
 });
 
 // Handle image upload and address input
@@ -19,7 +20,7 @@ router.post('/', async (req, res) => {
 
   try {
     const address = `${streetAddress}, ${zipcode}, ${country}`;
-    const filePath = path.join(__dirname, '..', 'public', 'images', req.file.filename); 
+    const filePath = path.join(__dirname, '..', 'public', 'images', req.file.filename);
 
     const buffer = await fs.readFile(filePath);
     const parser = ExifParser.create(buffer);
@@ -28,11 +29,12 @@ router.post('/', async (req, res) => {
     // Check if GPS data exists
     if (!metadata.tags.GPSLatitude || !metadata.tags.GPSLongitude) {
       const { Latitude, Longitude } = await getLatLng(address);
+      // Add GPS coordinates to the image
       await addGPSDataToImage(filePath, Latitude, Longitude);
     }
 
-    // Redirect to upload page with success
-    res.redirect('/upload?success=true');
+    // Redirect to /images after success
+    res.redirect('/images?success=true');
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
