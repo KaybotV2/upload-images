@@ -22,6 +22,25 @@ This Node.js and Express application is designed to accurately identify the loca
 5. **Display uploaded images with GPS data:**  
    All uploaded images are displayed, along with their corresponding GPS coordinates if available.
 
+## Demo 
+1. Upload an image from iPhone
+
+![iPhone Image](public/demo-images/upload-image-from-iphone.png)
+
+### Result
+
+![Display Uploaded iPhone Image](public/demo-images/display-result-from-iphone-image.png)
+
+2. Upload images that do not  contain `GPSLatitude` or `GPSLongitude` in its EXIF data
+
+![Image1](public/demo-images/upload-image1-with-address-from-google-search.png)
+![Image2](public/demo-images/upload-image2-with-address-from-google-search.png)
+![Image3](public/demo-images/upload-image3-with-address-from-google-search.png)
+
+### Result
+
+![Display the three images](public/demo-images/3-images-rendered.png)
+
 
 ## Application Files
 
