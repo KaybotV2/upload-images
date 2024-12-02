@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+    
+    <h1>Uploaded Images Data</h1>
+    <% if (imagesData.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Filename</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% imagesData.forEach(image => { %>
+                    <% if (!image.filename.includes('_original')) { %> <!-- Ignore files with '_original' in their name -->
+                        <tr>
+                            <td><%= image.filename %></td>
+                            <td><%= image.latitude %></td>
+                            <td><%= image.longitude %></td>
+                        </tr>
+                    <% } %>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p class="no-data">No images found in the directory.</p>
+    <% } %>
+</body>
+</html>
