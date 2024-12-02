@@ -64,3 +64,29 @@ This Node.js and Express application is designed to accurately identify the loca
 
 - **`upload.ejs`**:  
   Upload an image with the option to provide image address.
+
+## Prerequisites
+
+To get started with this application, ensure you have the following installed and set up:
+
+1. **Node.js**  
+    [Node.js](https://nodejs.org/) is required to run the server. You can download and install it from the official website. Ensure you have the latest LTS version.
+
+2. **Express.js**  
+    [Express.js](https://expressjs.com/) is a minimal and flexible Node.js web application framework. Install it in your project by running:
+    ```bash
+    npm install express
+    ```
+3. **EXIF Parser**
+    EXIF metadata allows you to extract image details like GPS coordinates. To work with EXIF data, use the `exif-parser` library. Install it via npm:
+    ```bash
+    npm install exif-parser
+    ```
+4. **Geocode**
+    The Geocode functionality is used to convert an address into geographic coordinates (latitude and longitude). You will need the following utility for geocoding:
+
+     - Install the required Geocode utility or use a service like [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start).
+5. **Google Maps API Key**
+    To use the Google Geocoding service, you will need an API key from [Google Cloud](https://cloud.google.com/api-keys/docs).
+
+    
